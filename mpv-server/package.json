@@ -1,0 +1,17 @@
+{
+  "name": "mpv-server",
+  "version": "1.0.0",
+  "description": "Server side mpv control.",
+  "main": "index.js",
+  "dependencies": {
+    "collections": "^1.2.4",
+    "node_mpv": "file:../node-mpv",
+    "ws": "^0.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
