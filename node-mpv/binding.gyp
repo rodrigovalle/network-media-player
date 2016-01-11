@@ -1,7 +1,7 @@
 {
     'targets': [
         {
-            'target_name': 'node_mpv',
+            'target_name': 'node-mpv',
             'sources': ['src/addon.cc'],
             'libraries': ['-lmpv'],
             'cflags': ['-std=c++11'],

@@ -4,15 +4,10 @@ var WebSocketServer = require('ws').Server,
 var mpv = require('node-mpv');
 var exec = require('child_process').exec;
 
-wss.on('connection', function(ws) {
-    ws.on('message', function(videoID) {
-        console.log('playing: ' + videoID);
-        getPlayableURL(videoID, function(url) {
-            mpv.play(url);
-        });
-    });
-});
-
+/* instead of getting video streams 1 at a time, modify yt_link
+ * to idle in the background when not retrieving a link
+ * this should keep the process creation overhead cost at a minimum
+ */
 function getPlayableURL(videoID, callback) {
     exec('./yt_link.py ' + videoID,
         function(error, stdout, stderr) {
@@ -20,4 +15,22 @@ function getPlayableURL(videoID, callback) {
         }
     );
 }
+
+wss.broadcast = function broadcast(data) {
+    wss.clients.forEach(function each(client) {
+        client.send(data);
+    });
+};
+
+wss.on('connection', function(ws) {
+    console.log('new client connected');
+    ws.on('message', function(videoID) {
+        console.log('playing: ' + videoID);
+        getPlayableURL(videoID, function(url) {
+            console.log('should be playing music rn :/');
+            mpv.play(url);
+        });
+    });
+});
+
 

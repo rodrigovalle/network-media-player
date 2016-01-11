@@ -14,8 +14,8 @@ RUN apt-get -y install build-essential git vim
 RUN apt-get -y install python3-pip
 RUN apt-get -y install mpv
 
-# pafy
-RUN pip3 install pafy
+# youtubedl
+RUN pip3 install youtube-dl
 
 # home environment
 RUN useradd dev

@@ -1,5 +1,5 @@
 {
-  "name": "node_mpv",
+  "name": "node-mpv",
   "version": "1.0.0",
   "description": "mpv wrapper",
   "main": "build/Release/node-mpv",
